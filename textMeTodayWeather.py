@@ -4,6 +4,9 @@ import urllib.request
 import json
 
 def getTodayWeather(cityName):
+
+    # Find out if the city name contains space
+    #   If it does, replace it with "%20" to be used in the URL
     if (" " in cityName):
         cityName = cityName.replace(" ", "%20")
 
@@ -11,10 +14,10 @@ def getTodayWeather(cityName):
 
     response = urllib.request.urlopen("http://api.openweathermap.org/data/2.5/weather?q={}&units={}&APPID={}".format(cityName, unit, 'a748d4cee36119dedfc8827a2c6cb125'))
 
-    # Convert the json data into a list
+    # Convert JSON data into a list
     weatherData = json.loads(response.read().decode('utf8'))
 
-    # Print the weather
+    # Print weather
     print('City:    ' + weatherData['name'])
     print('Weather: ' + weatherData['weather'][0]['main'])
     print('Temp:    ' + str(weatherData['main']['temp']))
@@ -40,28 +43,26 @@ def setTimer(hostUsername, hostPassword, targetEmail, content, targetNotifyTime,
 
     while True:
 
-        # get current time - hour, minute, second.
+        # Get current time - hour, minute, second.
         currentTime = str(datetime.datetime.now())
         currentMinute = int(currentTime.split(":")[1])
         currentHour = int(currentTime.split(":")[0].split(" ")[1])
 
-        # adjust to target's timezone (24h)
+        # Adjust to target's timezone (24h)
         targetHour = (currentHour + timeDiff) % 24
 
-        # when time comes
+        # When time comes
         if (targetHour == targetNotifyTime[0]) and (currentMinute == targetNotifyTime[1]):
 
-            # send email
+            # Send email
             sendEmail(hostUsername, hostPassword, targetEmail, content)
 
-            # break out of the loop
+            # Break out of the loop
             break
 
 if __name__ == "__main__":
 
     # Host email account details
-    #	Host email must allow less secure apps before SMTP server usage:
-    #	https://www.google.com/settings/security/lesssecureapps
     hostUsername = "yourEmailAddress@gmail.com"
     hostPassword = "yourPassword"
 
