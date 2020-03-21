@@ -14,7 +14,7 @@ def getTodayWeather(cityName):
 
     response = urllib.request.urlopen("http://api.openweathermap.org/data/2.5/weather?q={}&units={}&APPID={}".format(cityName, unit, 'a748d4cee36119dedfc8827a2c6cb125'))
 
-    # Convert JSON data into a list
+    # Convert JSON data into a dictionary
     weatherData = json.loads(response.read().decode('utf8'))
 
     # Print weather
