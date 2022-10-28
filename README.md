@@ -1,8 +1,8 @@
-# textMeTodayWeather
-A script that send the current weather information to your friend
+# Email Me Today's Weather
+A script that sends the current weather information to you.
 
 ### Overview
-This script sends out an email containing the current weather (weather, temperature, and wind speed) of the city at a specific time.
+This script sends out an email containing the current weather (weather, temperature, and wind speed) of the city at the specified time.
 
 ### Context
 I was playing around with the SMTP library on Python and decided to combine it with fetch-current-weather (also on my GitHub) that I created a few years ago.
